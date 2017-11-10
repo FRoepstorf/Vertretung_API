@@ -11,6 +11,15 @@ task :fetch_timetable => :environment do
   response = HTTParty.get('https://iphone.dsbcontrol.de/iPhoneService.svc/DSB/timetables/2411de16-a699-4014-8ab4-5fe9200b2e11')
   doc = Nokogiri::HTML(open(response[0]['timetableurl']))
 
+  if Timetable.last.nil?
+    timetable = Timetable.new
+    timetable.date = response[0]['timetabledate']
+    timetable.group_name = response[0]['timetablegroupname']
+    timetable.title = response[0]['timetabletitle']
+    timetable.url = response[0]['timetableurl']
+    timetable.save!
+  end
+
   if response[0]['timetabledate'] != Timetable.last.date
     timetable = Timetable.new
     timetable.date = response[0]['timetabledate']
