@@ -90,4 +90,7 @@ task :fetch_timetable => :environment do
 
     puts 'New data was fetched!'
   end
+
+  ChangesMailer.mail_change('florian.roepstorf@gmail.com').deliver
+
 end

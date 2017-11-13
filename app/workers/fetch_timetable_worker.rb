@@ -4,7 +4,7 @@ class FetchTimeTableWorker
   require 'nokogiri'
   require 'open-uri'
   def perform
-    response = HTTParty.get('https://iphone.dsbcontrol.de/iPhoneService.svc/DSB/timetables/2411de16-a699-4014-8ab4-5fe9200b2e11')
+    response = HTTParty.get(ENV['API_LINK'])
     doc = Nokogiri::HTML(open(response[0]['timetableurl']))
     alt_cell = doc.css('.alt')
     alts = {}
