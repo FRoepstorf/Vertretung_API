@@ -6,7 +6,6 @@
 <body>
 <h1>Folgende Änderungen am Vertretungsplan gibt es:</h1>
 <p>Test</p>
-<% @changes = Change.find_by_school_class('IT7o') %>
 <% @changes.each do |change| %>
   <p><%= change.hours %></p>
   <p><%= change.description %></p>

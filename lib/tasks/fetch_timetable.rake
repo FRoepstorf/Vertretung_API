@@ -88,11 +88,10 @@ task :fetch_timetable => :environment do
       i += 1
     end
 
-    ChangesMailer.mail_change('florian.roepstorf@gmail.com').deliver
-
+    changes = Change.find_by_school_class 'IT7o'
+    unless changes.nil?
+      ChangesMailer.mail_change('florian.roepstorf@gmail.com', changes).deliver
+    end
     puts 'New data was fetched!'
   end
-
-
-
 end
