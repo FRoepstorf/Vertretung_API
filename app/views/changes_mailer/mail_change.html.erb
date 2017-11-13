@@ -6,6 +6,10 @@
 <body>
 <h1>Folgende Änderungen am Vertretungsplan gibt es:</h1>
 <p>Test</p>
-<% @changes.to_s %>
+<% @changes.each do |change| %>
+  <p><%= change.hours %></p>
+  <p><%= change.description %></p>
+  <p><%= change.room %></p>
+<% end %>
 </body>
 </html>
